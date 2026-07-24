@@ -1,0 +1,23 @@
+.no-events{
+    width:100%;
+    margin-top:60px;
+    text-align:center;
+    color:#d1d5db;
+}
+
+.no-events i{
+    font-size:70px;
+    color:#38bdf8;
+    margin-bottom:20px;
+}
+
+.no-events h2{
+    color:#ffffff;
+    font-size:32px;
+    margin-bottom:10px;
+}
+
+.no-events p{
+    color:#94a3b8;
+    font-size:18px;
+}

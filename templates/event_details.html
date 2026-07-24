@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{{ event.event_name }}</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/campus.css') }}">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Back Button -->
+
+    <a href="{{ url_for('campus_events') }}" class="back">
+        <i class="fa-solid fa-arrow-left"></i> Back to Events
+    </a>
+
+
+    <!-- Event Card -->
+
+    <div class="event-details-card">
+
+        <div class="event-content">
+
+            <div class="event-header">
+
+                <h1>{{ event.event_name }}</h1>
+
+                <span class="category">
+                    {{ event.category }}
+                </span>
+
+            </div>
+
+            <!-- Quick Summary -->
+
+            <div class="event-summary">
+
+                <div class="summary-box">
+
+                    <i class="fa-solid fa-calendar-days"></i>
+
+                    <h3>{{ event.event_date }}</h3>
+
+                    <p>Event Date</p>
+
+                </div>
+
+                <div class="summary-box">
+
+                    <i class="fa-solid fa-hourglass-half"></i>
+
+                    <h3>{{ event.last_date }}</h3>
+
+                    <p>Registration Ends</p>
+
+                </div>
+
+                <div class="summary-box">
+
+                    <i class="fa-solid fa-location-dot"></i>
+
+                    <h3>{{ event.venue }}</h3>
+
+                    <p>Venue</p>
+
+                </div>
+
+            </div>
+
+            <hr class="divider">
+
+            <!-- Details -->
+
+            <div class="details-grid">
+
+                <div class="detail-box">
+
+                    <i class="fa-solid fa-building"></i>
+
+                    <div>
+
+                        <strong>College</strong>
+
+                        <p>{{ event.college_name }}</p>
+
+                    </div>
+
+                </div>
+
+                <div class="detail-box">
+
+                    <i class="fa-solid fa-calendar-days"></i>
+
+                    <div>
+
+                        <strong>Event Date</strong>
+
+                        <p>{{ event.event_date }}</p>
+
+                    </div>
+
+                </div>
+
+                <div class="detail-box">
+
+                    <i class="fa-solid fa-hourglass-half"></i>
+
+                    <div>
+
+                        <strong>Registration Last Date</strong>
+
+                        <p>{{ event.last_date }}</p>
+
+                    </div>
+
+                </div>
+
+                <div class="detail-box">
+
+                    <i class="fa-solid fa-location-dot"></i>
+
+                    <div>
+
+                        <strong>Venue</strong>
+
+                        <p>{{ event.venue }}</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <hr class="divider">
+
+            <!-- Description -->
+
+            <div class="description">
+
+                <h2>Description</h2>
+
+                <p>
+
+                    {{ event.description }}
+
+                </p>
+
+            </div>
+
+            {% if event.registration_link %}
+
+            <div class="register-section">
+
+                <a
+                    href="{{ event.registration_link }}"
+                    target="_blank"
+                    class="register-btn">
+
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+                    Register Now
+
+                </a>
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

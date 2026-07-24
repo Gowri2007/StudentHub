@@ -1,0 +1,373 @@
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+/* ===============================
+   Background
+=================================*/
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#1f2937;
+    overflow:hidden;
+    position:relative;
+}
+
+/* Decorative Shapes */
+
+body::before{
+    content:"";
+    position:absolute;
+    width:420px;
+    height:420px;
+    background:#2b3648;
+    border-radius:50%;
+    top:-170px;
+    left:-170px;
+}
+
+body::after{
+    content:"";
+    position:absolute;
+    width:350px;
+    height:350px;
+    background:#334155;
+    border-radius:50%;
+    bottom:-170px;
+    right:-170px;
+}
+
+/* ===============================
+   Container
+=================================*/
+
+.login-container{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    position:relative;
+    z-index:2;
+}
+
+/* ===============================
+   Login Card
+=================================*/
+
+.login-card{
+
+    width:430px;
+
+    background:#374151;
+
+    border-radius:22px;
+
+    padding:45px;
+
+    text-align:center;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    box-shadow:0 20px 40px rgba(0,0,0,.35);
+
+    animation:fadeIn .5s ease;
+}
+
+/* ===============================
+   Logo
+=================================*/
+
+.logo{
+
+    width:85px;
+    height:85px;
+
+    margin:auto;
+    margin-bottom:20px;
+
+    border-radius:50%;
+
+    background:#1e293b;
+
+    border:3px solid #38bdf8;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:#38bdf8;
+
+    font-size:34px;
+}
+
+/* ===============================
+   Headings
+=================================*/
+
+.login-card h1{
+
+    color:white;
+
+    font-size:42px;
+
+    margin-bottom:6px;
+}
+
+.subtitle{
+
+    color:#cbd5e1;
+
+    margin-bottom:30px;
+
+    font-size:16px;
+}
+
+/* ===============================
+   Flash Messages
+=================================*/
+
+.flash{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:12px 15px;
+
+    margin-bottom:18px;
+
+    border-radius:10px;
+
+    font-size:14px;
+}
+
+.success{
+
+    background:#14532d;
+
+    color:#dcfce7;
+}
+
+.danger{
+
+    background:#7f1d1d;
+
+    color:#fecaca;
+}
+
+.warning{
+
+    background:#78350f;
+
+    color:#fde68a;
+}
+
+/* Close Button */
+
+.close-btn{
+
+    background:none;
+
+    border:none;
+
+    color:white;
+
+    font-size:20px;
+
+    cursor:pointer;
+
+    width:auto;
+}
+
+.close-btn:hover{
+
+    color:#38bdf8;
+}
+
+/* ===============================
+   Input Box
+=================================*/
+
+.input-box{
+
+    display:flex;
+
+    align-items:center;
+
+    background:#1e293b;
+
+    border:1px solid #475569;
+
+    border-radius:12px;
+
+    overflow:hidden;
+
+    margin-bottom:18px;
+}
+
+.input-box i{
+
+    width:55px;
+
+    color:#38bdf8;
+
+    font-size:18px;
+
+    text-align:center;
+}
+
+.input-box input{
+
+    width:100%;
+
+    border:none;
+
+    outline:none;
+
+    background:transparent;
+
+    color:white;
+
+    padding:15px;
+
+    font-size:15px;
+}
+
+.input-box input::placeholder{
+
+    color:#94a3b8;
+}
+
+.input-box:focus-within{
+
+    border-color:#38bdf8;
+
+    box-shadow:0 0 8px rgba(56,189,248,.25);
+}
+
+/* ===============================
+   Login Button
+=================================*/
+
+.login-btn{
+
+    width:100%;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#38bdf8;
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.login-btn:hover{
+
+    background:#0ea5e9;
+
+    transform:translateY(-2px);
+}
+
+/* ===============================
+   Back Link
+=================================*/
+
+.back-link{
+
+    display:block;
+
+    margin-top:22px;
+
+    color:#38bdf8;
+
+    text-decoration:none;
+
+    font-weight:600;
+}
+
+.back-link:hover{
+
+    color:#7dd3fc;
+
+    text-decoration:underline;
+}
+
+/* ===============================
+   Animation
+=================================*/
+
+@keyframes fadeIn{
+
+from{
+
+opacity:0;
+
+transform:translateY(30px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+/* ===============================
+   Responsive
+=================================*/
+
+@media(max-width:500px){
+
+.login-card{
+
+width:92%;
+
+padding:30px;
+
+}
+
+.login-card h1{
+
+font-size:34px;
+
+}
+
+.logo{
+
+width:70px;
+
+height:70px;
+
+font-size:28px;
+
+}
+
+}

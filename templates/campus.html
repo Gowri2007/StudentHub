@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Campus Events</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/campus.css') }}">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Back Button -->
+
+    <a href="{{ url_for('home_page') }}" class="back">
+
+        <i class="fa-solid fa-arrow-left"></i>
+
+        Back
+
+    </a>
+
+    <!-- Heading -->
+
+    <h1>🎓 Campus Events</h1>
+
+    <p class="subtitle">
+
+        Discover hackathons, workshops, seminars, coding contests and bootcamps happening across the college.
+
+    </p>
+
+    <!-- ================= FILTER BAR ================= -->
+
+    <div class="filter-container">
+
+        <!-- Search -->
+
+        <div class="search-box">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input
+                type="text"
+                id="search"
+                placeholder="Search events...">
+
+        </div>
+
+        <!-- Sort -->
+
+        <div class="sort-box">
+
+            <i class="fa-solid fa-arrow-down-wide-short"></i>
+
+            <select id="sortSelect">
+                <option value="none" selected>
+        No Filter
+    </option>
+
+                <option value="latest">
+
+                    Latest Events
+
+                </option>
+
+                <option value="earliest">
+
+                    Earliest Events
+
+                </option>
+
+                <option value="name">
+
+                    Event Name (A-Z)
+
+                </option>
+
+                <option value="college">
+
+                    College Name
+
+                </option>
+
+            </select>
+
+        </div>
+
+        <!-- Calendar -->
+
+        <div class="date-box">
+
+            <i class="fa-solid fa-calendar-days"></i>
+
+            <input
+                type="date"
+                id="dateFilter">
+
+        </div>
+
+    </div>
+
+    <!-- ================= CATEGORY ================= -->
+
+    <div class="categories">
+
+        <button class="category-btn active"
+                data-category="all">
+
+            All
+
+        </button>
+
+        <button class="category-btn"
+                data-category="Hackathon">
+
+            Hackathon
+
+        </button>
+
+        <button class="category-btn"
+                data-category="Workshop">
+
+            Workshop
+
+        </button>
+
+        <button class="category-btn"
+                data-category="Seminar">
+
+            Seminar
+
+        </button>
+
+        <button class="category-btn"
+                data-category="Coding Contest">
+
+            Coding Contest
+
+        </button>
+
+        <button class="category-btn"
+                data-category="Webinar">
+
+            Webinar
+
+        </button>
+
+        <button class="category-btn"
+                data-category="Bootcamp">
+
+            Bootcamp
+
+        </button>
+
+    </div>
+
+    <!-- ================= EVENTS ================= -->
+
+    <div class="event-container">
+                {% if events %}
+
+            {% for event in events %}
+
+            <div class="event fade-in"
+
+                 data-name="{{ event.event_name }}"
+
+                 data-category="{{ event.category }}"
+
+                 data-college="{{ event.college_name }}"
+
+                 data-date="{{ event.event_date }}">
+
+                <h2>
+
+                    {{ event.event_name }}
+
+                </h2>
+
+                <p>
+
+                    <strong>🏫 College :</strong>
+
+                    {{ event.college_name }}
+
+                </p>
+
+                <p>
+
+                    <strong>📂 Category :</strong>
+
+                    {{ event.category }}
+
+                </p>
+
+                <p>
+
+                    <strong>📅 Event Date :</strong>
+
+                    {{ event.event_date }}
+
+                </p>
+
+                <p>
+
+                    <strong>⏳ Registration Last Date :</strong>
+
+                    {{ event.last_date }}
+
+                </p>
+
+                <p>
+
+                    <strong>📍 Venue :</strong>
+
+                    {{ event.venue }}
+
+                </p>
+
+                <button
+                    onclick="window.location.href='{{ url_for('event_details', event_id=event.id) }}'">
+
+                    View Details
+
+                </button>
+
+            </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            <div class="event no-events">
+
+                <h2>
+
+                    No Events Found
+
+                </h2>
+
+                <p>
+
+                    There are currently no campus events available.
+
+                </p>
+
+            </div>
+
+        {% endif %}
+
+   </div>
+
+<div id="no-results" style="display:none;">
+
+    <i class="fa-solid fa-face-frown"></i>
+
+    <h2>No Events Found</h2>
+
+    <p>No events match your current filters.</p>
+
+</div>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/campus.js') }}"></script>
+</body>
+</html>
+    

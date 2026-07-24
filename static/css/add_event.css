@@ -1,0 +1,410 @@
+/* ===============================
+   Google Font
+================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+/* ===============================
+   Background
+================================= */
+
+body{
+    background:linear-gradient(135deg,#0f172a,#1e293b,#334155);
+    color:#ffffff;
+    min-height:100vh;
+}
+/* Keep navbar from being overridden */
+
+.navbar{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:75px;
+    background:rgba(15,23,42,.9);
+    backdrop-filter:blur(15px);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 60px;
+    border-bottom:1px solid rgba(255,255,255,.1);
+    z-index:1000;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:700;
+    color:#38bdf8;
+}
+
+.nav-links{
+    display:flex;
+    align-items:center;
+    list-style:none;
+    gap:30px;
+}
+
+.nav-links li{
+    list-style:none;
+}
+
+.nav-links a{
+    text-decoration:none;
+    color:white;
+    font-weight:500;
+    transition:.3s;
+}
+
+.nav-links a:hover{
+    color:#38bdf8;
+}
+/* ===============================
+   Main Container
+================================= */
+
+.page-container{
+    width:90%;
+    max-width:1000px;
+    margin:110px auto 70px;
+}
+
+/* ===============================
+   Back Button
+================================= */
+
+.back-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    color:#38bdf8;
+    text-decoration:none;
+    font-weight:600;
+    margin-bottom:25px;
+    transition:.3s;
+}
+
+.back-btn:hover{
+    color:#7dd3fc;
+}
+
+/* ===============================
+   Heading
+================================= */
+
+.page-title{
+    text-align:center;
+    margin-bottom:35px;
+}
+
+.page-title h1{
+    font-size:46px;
+    font-weight:700;
+    margin-bottom:10px;
+}
+
+.page-title p{
+    color:#cbd5e1;
+    font-size:18px;
+}
+
+/* ===============================
+   Form Card
+================================= */
+
+.form-card{
+    background:#374151;
+    border-radius:20px;
+    padding:40px;
+    box-shadow:0 20px 45px rgba(0,0,0,.35);
+    border:1px solid rgba(255,255,255,.08);
+    animation:fadeUp .5s ease;
+}
+
+/* ===============================
+   Two Column Layout
+================================= */
+
+.form-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:25px;
+    margin-bottom:25px;
+}
+
+.form-group{
+    margin-bottom:25px;
+}
+
+/* ===============================
+   Labels
+================================= */
+
+.form-group label{
+    display:block;
+    margin-bottom:10px;
+    font-weight:600;
+    color:white;
+}
+
+.form-group label i{
+    color:#38bdf8;
+    margin-right:8px;
+}
+
+/* ===============================
+   Inputs
+================================= */
+
+.form-group input,
+.form-group select,
+.form-group textarea{
+
+    width:100%;
+    padding:14px 16px;
+
+    background:#111827;
+
+    color:white;
+
+    border:2px solid transparent;
+
+    border-radius:10px;
+
+    outline:none;
+
+    font-size:15px;
+
+    transition:.3s;
+
+}
+
+/* Placeholder */
+
+.form-group input::placeholder,
+.form-group textarea::placeholder{
+
+    color:#94a3b8;
+
+}
+
+/* Focus */
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{
+
+    border-color:#38bdf8;
+
+    box-shadow:0 0 12px rgba(56,189,248,.25);
+
+}
+
+/* Textarea */
+
+textarea{
+
+    resize:vertical;
+
+    min-height:150px;
+
+}
+
+/* ===============================
+   Character Counter
+================================= */
+
+.char-count{
+
+    margin-top:8px;
+
+    text-align:right;
+
+    font-size:13px;
+
+    color:#94a3b8;
+
+}
+
+/* ===============================
+   File Upload
+================================= */
+
+
+/* ===============================
+   Image Preview
+================================= */
+
+.image-preview{
+
+    margin-top:15px;
+
+    text-align:center;
+
+}
+
+.image-preview img{
+
+    max-width:280px;
+
+    max-height:280px;
+
+    border-radius:12px;
+
+    border:3px solid #38bdf8;
+
+    display:none;
+
+}
+
+/* ===============================
+   Button
+================================= */
+
+.button-area{
+
+    margin-top:35px;
+
+    text-align:center;
+
+}
+
+.publish-btn{
+
+    width:100%;
+
+    height:58px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#38bdf8;
+
+    color:white;
+
+    font-size:18px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.publish-btn:hover{
+
+    background:#0ea5e9;
+
+    transform:translateY(-3px);
+
+    box-shadow:0 15px 30px rgba(56,189,248,.35);
+
+}
+
+.publish-btn i{
+
+    margin-right:10px;
+
+}
+
+/* ===============================
+   Animation
+================================= */
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(25px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/* ===============================
+   Responsive
+================================= */
+
+@media(max-width:768px){
+
+    .form-row{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .form-card{
+
+        padding:25px;
+
+    }
+
+    .page-title h1{
+
+        font-size:34px;
+
+    }
+
+}
+/* ================= Cancel Button ================= */
+
+.cancel-btn{
+
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+
+    padding:14px 28px;
+
+    border-radius:12px;
+
+    background:#475569;
+
+    color:#fff;
+
+    text-decoration:none;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.cancel-btn:hover{
+
+    background:#334155;
+
+}
+
+.button-area{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
+}
+
+

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Add New Event | StudentHub</title>
+
+    <!-- Dashboard CSS -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <!-- Add Event CSS -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/add_event.css') }}">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        🎓 StudentHub Admin
+    </div>
+
+    <ul class="nav-links">
+
+        <li>
+            <a href="{{ url_for('dashboard') }}">
+                Dashboard
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ url_for('view_events') }}">
+                View Events
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ url_for('admin_logout') }}">
+                Logout
+            </a>
+        </li>
+
+    </ul>
+
+</nav>
+
+<div class="page-container">
+
+    <!-- Back Button -->
+
+    <a href="{{ url_for('dashboard') }}" class="back-btn">
+        <i class="fa-solid fa-arrow-left"></i>
+        Back to Dashboard
+    </a>
+
+    <!-- Page Heading -->
+
+    <div class="page-title">
+
+        <h1>
+            Add New Event
+        </h1>
+
+        <p>
+            Publish technical events for students across campuses.
+        </p>
+
+    </div>
+
+    <!-- Form Card -->
+
+    <div class="form-card">
+
+        <form method="POST"
+              enctype="multipart/form-data">
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label>
+                        <i class="fa-solid fa-pen"></i>
+                        Event Name
+                    </label>
+
+                    <input
+                        type="text"
+                        name="event_name"
+                        placeholder="AI Hackathon 2026"
+                        required>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>
+                        <i class="fa-solid fa-layer-group"></i>
+                        Category
+                    </label>
+
+                    <select
+                        name="category"
+                        required>
+
+                        <option value="">
+                            Select Category
+                        </option>
+
+                        <option>Hackathon</option>
+                        <option>Workshop</option>
+                        <option>Seminar</option>
+                        <option>Coding Contest</option>
+                        <option>Webinar</option>
+                        <option>Bootcamp</option>
+                        <option>Other</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+            <!-- ================= Second Row ================= -->
+
+<div class="form-row">
+
+    <div class="form-group">
+
+        <label>
+            <i class="fa-solid fa-building"></i>
+            College Name
+        </label>
+
+        <input
+            type="text"
+            name="college_name"
+            placeholder="Sri Vishnu Engineering College for Women"
+            required>
+
+    </div>
+
+    <div class="form-group">
+
+        <label>
+            <i class="fa-solid fa-location-dot"></i>
+            Venue
+        </label>
+
+        <input
+            type="text"
+            name="venue"
+            placeholder="Main Auditorium"
+            required>
+
+    </div>
+
+</div>
+
+<!-- ================= Third Row ================= -->
+
+<div class="form-row">
+
+    <div class="form-group">
+
+        <label>
+            <i class="fa-solid fa-calendar-days"></i>
+            Event Date
+        </label>
+
+        <input
+            type="date"
+            name="event_date"
+            required>
+
+    </div>
+
+    <div class="form-group">
+
+        <label>
+            <i class="fa-solid fa-hourglass-half"></i>
+            Registration Last Date
+        </label>
+
+        <input
+            type="date"
+            name="last_date"
+            required>
+
+    </div>
+
+</div>
+
+<!-- ================= Description ================= -->
+
+<div class="form-group">
+
+    <label>
+
+        <i class="fa-solid fa-align-left"></i>
+
+        Description
+
+    </label>
+
+    <textarea
+        id="description"
+        name="description"
+        rows="6"
+        maxlength="500"
+        placeholder="Describe the event, eligibility, prizes, rules, schedule..."
+        required></textarea>
+
+    <div class="char-count">
+
+        <span id="count">0</span>/500 characters
+
+    </div>
+
+</div>
+
+<!-- ================= Registration Link ================= -->
+
+<div class="form-group">
+
+    <label>
+
+        <i class="fa-solid fa-link"></i>
+
+        Registration Link
+
+    </label>
+
+    <input
+        type="url"
+        name="registration_link"
+        placeholder="https://example.com/register">
+
+</div>
+
+<!-- ================= Event Poster ================= -->
+
+
+
+
+<div class="image-preview">
+
+    <img
+        id="preview"
+        src=""
+        alt="Poster Preview">
+
+</div>
+<!-- Preview -->
+
+
+<!-- ================= Button ================= -->
+
+<div class="button-area">
+
+    <button
+        type="submit"
+        class="publish-btn">
+
+        <i class="fa-solid fa-paper-plane"></i>
+
+        Publish Event
+
+    </button>
+
+</div>
+
+</form>
+
+</div>
+
+</div>
+
+<!-- JavaScript -->
+
+<script src="{{ url_for('static', filename='js/add_event.js') }}"></script>
+
+</body>
+
+</html>

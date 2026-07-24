@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>StudentHub</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        🎓 StudentHub
+    </div>
+
+    <ul class="nav-links">
+
+        <li>
+            <a href="{{ url_for('home_page') }}">
+                Home
+            </a>
+        </li>
+
+        
+
+        {% if session.get("student_id") %}
+
+        <li>
+            <a href="{{ url_for('student_dashboard') }}">
+                Dashboard
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ url_for('profile') }}" class="profile">
+                <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png">
+            </a>
+        </li>
+
+        {% else %}
+
+        <li>
+            <a href="{{ url_for('student_login') }}">
+                Login
+            </a>
+        </li>
+
+        {% endif %}
+
+    </ul>
+
+</nav>
+
+<!-- ================= FLASH MESSAGE ================= -->
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+
+<div id="flash-container">
+
+    {% for category, message in messages %}
+
+    <div class="flash {{ category }}">
+
+        <span>{{ message }}</span>
+
+        <button class="close-btn"
+                onclick="this.parentElement.remove()">
+            &times;
+        </button>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+{% endif %}
+{% endwith %}
+
+<!-- ================= WELCOME ================= -->
+
+<div class="dashboard">
+
+    <div class="welcome">
+
+        <h1>
+            Welcome Back 👋
+        </h1>
+
+        <p>
+            Discover exciting technical events happening inside and outside your campus.
+        </p>
+
+    </div>
+
+    <!-- ================= EVENT CARDS ================= -->
+
+    <div class="event-container">
+
+        <!-- On Campus -->
+
+        <div class="event-card campus">
+
+            <div class="icon">
+                <i class="fa-solid fa-building-columns"></i>
+            </div>
+
+            <h2>
+                On Campus Events
+            </h2>
+
+            <p>
+                Technical fests, workshops, hackathons,
+                seminars and club activities happening
+                inside your college.
+            </p>
+
+           <a href="{{ url_for('campus_events') }}" class="explore-btn">
+    Explore Events
+</a>
+        </div>
+
+        <!-- Off Campus -->
+
+        <div class="event-card offcampus">
+
+            <div class="icon">
+                <i class="fa-solid fa-globe"></i>
+            </div>
+
+            <h2>
+                Off Campus Events
+            </h2>
+
+            <p>
+                National hackathons,
+                coding contests,
+                internships,
+                conferences,
+                bootcamps and industry events.
+            </p>
+
+           <a href="{{ url_for('offcampus_events') }}" class="explore-btn">
+    Explore Events
+</a>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ================= UPCOMING EVENTS ================= -->
+
+{% if upcoming_events %}
+
+<div class="dashboard">
+
+    <div class="welcome">
+
+        <h1>
+            Upcoming Events
+        </h1>
+
+        <p>
+            Don't miss the latest opportunities.
+        </p>
+
+    </div>
+
+    <div class="event-container">
+
+        {% for event in upcoming_events %}
+
+        <div class="event-card">
+
+            <h2>
+                {{ event.event_name }}
+            </h2>
+
+            <p>
+                <strong>College :</strong>
+                {{ event.college_name }}
+            </p>
+
+            <p>
+                <strong>Category :</strong>
+                {{ event.category }}
+            </p>
+
+            <p>
+                <strong>Date :</strong>
+                {{ event.event_date }}
+            </p>
+
+            <a class="view-details"
+               href="{{ url_for('event_details', event_id=event.id) }}">
+                View Details
+            </a>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endif %}
+
+<!-- ================= AUTO REMOVE FLASH ================= -->
+
+<script>
+
+setTimeout(function () {
+
+    const flash = document.getElementById("flash-container");
+
+    if (flash) {
+        flash.remove();
+    }
+
+}, 4000);
+
+</script>
+
+</body>
+
+</html>

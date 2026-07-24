@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet"
+href="{{ url_for('static', filename='css/dashboard.css') }}">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        🎓 StudentHub Admin
+    </div>
+
+    <ul class="nav-links">
+
+        <li>
+            <a href="{{ url_for('dashboard') }}">Dashboard</a>
+        </li>
+
+   
+
+        <li>
+            <a href="{{ url_for('admin_logout') }}">Logout</a>
+        </li>
+
+    </ul>
+
+</nav>
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+
+        <div id="flash-message" class="flash {{ category }}">
+            <span>{{ message }}</span>
+
+            <button class="close-btn" onclick="closeFlash()">
+                &times;
+            </button>
+        </div>
+
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+<!-- ================= WELCOME ================= -->
+
+<div class="dashboard">
+
+    <div class="welcome">
+
+        <h1>
+            Welcome Admin 👋
+        </h1>
+
+        <p>
+            Manage technical events from one place.
+        </p>
+
+    </div>
+
+    <!-- ================= QUICK ACTIONS ================= -->
+
+    <div class="event-container">
+
+        <div class="event-card">
+
+            <div class="icon">
+                <i class="fa-solid fa-plus"></i>
+            </div>
+
+            <h2>Add New Event</h2>
+
+            <p>
+                Create and publish a new technical event.
+            </p>
+
+           <a href="{{ url_for('add_event') }}" class="dashboard-btn">
+    Add Event
+</a>
+
+        </div>
+
+        <div class="event-card">
+
+            <div class="icon">
+                <i class="fa-solid fa-list"></i>
+            </div>
+
+            <h2>Manage Events</h2>
+
+            <p>
+                Edit or delete existing events.
+            </p>
+
+           <a href="{{ url_for('view_events') }}" class="dashboard-btn">
+    View Events
+</a>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ================= EVENT SUMMARY ================= -->
+
+<div class="dashboard">
+
+    <div class="welcome">
+
+        <h1>Recently Added Events</h1>
+
+        <p>
+            Latest events available in the system.
+        </p>
+
+    </div>
+
+    <div class="event-container">
+
+        {% if events %}
+
+            {% for event in events %}
+
+            <div class="event-card">
+
+                {% if event.image %}
+
+                <img
+                    src="{{ url_for('static', filename='uploads/' + event.image) }}"
+                    alt="{{ event.event_name }}"
+                    style="width:100%;height:200px;object-fit:cover;border-radius:10px;">
+
+                {% endif %}
+
+                <h2>{{ event.event_name }}</h2>
+
+                <p><strong>College:</strong> {{ event.college_name }}</p>
+
+                <p><strong>Category:</strong> {{ event.category }}</p>
+
+                <p><strong>Date:</strong> {{ event.event_date }}</p>
+
+                <div style="margin-top:15px; display:flex; gap:10px;">
+
+                    <a href="{{ url_for('edit_event', event_id=event.id) }}"
+                       class="btn">
+
+                        Edit
+
+                    </a>
+
+                    <a href="{{ url_for('delete_event', event_id=event.id) }}"
+                       class="btn"
+                       onclick="return confirm('Are you sure you want to delete this event?');">
+
+                        Delete
+
+                    </a>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            <div class="event-card">
+
+                <h2>No Events Found</h2>
+
+                <p>
+                    Click "Add Event" to create your first event.
+                </p>
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+<script>
+
+function closeFlash(){
+    const flash = document.getElementById("flash-message");
+    if(flash){
+        flash.remove();
+    }
+}
+
+setTimeout(function(){
+
+    closeFlash();
+
+},3000);
+
+</script>
+</body>
+
+</html>

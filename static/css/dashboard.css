@@ -1,0 +1,106 @@
+.dashboard-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+
+    margin-top:20px;
+    padding:12px 28px;
+
+    background:#38bdf8;
+    color:#ffffff !important;
+
+    text-decoration:none !important;
+
+    font-size:15px;
+    font-weight:600;
+
+    border-radius:10px;
+
+    border:none;
+
+    cursor:pointer;
+
+    transition:all .3s ease;
+
+}
+
+.dashboard-btn:hover{
+        background:#0ea5e9;
+    color:#ffffff !important;
+    text-decoration:none !important;
+    transform:translateY(-2px);
+    box-shadow:0 8px 20px rgba(56,189,248,.3);
+
+}
+
+.dashboard-btn:visited,
+.dashboard-btn:active,
+.dashboard-btn:focus{
+    color:#ffffff !important;
+    text-decoration:none !important;
+}
+/* Flash Message */
+/* Admin Flash Message */
+
+#flash-message{
+
+    position: fixed;
+
+    top: 90px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    min-width: 360px;
+
+    padding: 15px 20px;
+
+    background: #22c55e;
+
+    color: #fff;
+
+    border-radius: 10px;
+
+    box-shadow: 0 8px 20px rgba(0,0,0,.25);
+
+    z-index: 9999;
+
+    animation: fadeDown .3s ease;
+}
+
+.close-btn{
+
+    background: transparent;
+
+    border: none;
+
+    color: white;
+
+    font-size: 22px;
+
+    cursor: pointer;
+
+    margin-left: 15px;
+}
+
+@keyframes fadeDown{
+
+    from{
+        opacity:0;
+        transform:translate(-50%,-20px);
+    }
+
+    to{
+        opacity:1;
+        transform:translate(-50%,0);
+    }
+
+}
