@@ -13,7 +13,7 @@ from werkzeug.utils import secure_filename
 from werkzeug.security import generate_password_hash, check_password_hash
 import os
 import math
-
+from datetime import datetime, date
 
 # ----------------------------------------------------
 # Flask Configuration
@@ -221,57 +221,9 @@ def student_login():
 # ----------------------------------------------------
 # STUDENT DASHBOARD
 # ----------------------------------------------------
-
 @app.route("/student_dashboard")
 def student_dashboard():
-
-    if "student_id" not in session:
-        flash("Please login first.", "warning")
-        return redirect(url_for("student_login"))
-
-    conn = get_connection()
-    cursor = conn.cursor(dictionary=True)
-
-    # Student Details
-    cursor.execute(
-        """
-        SELECT *
-        FROM students
-        WHERE id=%s
-        """,
-        (session["student_id"],)
-    )
-
-    student = cursor.fetchone()
-
-    # Total Events
-    cursor.execute("""
-        SELECT COUNT(*) AS total
-        FROM events
-    """)
-
-    total_events = cursor.fetchone()["total"]
-
-    # Upcoming Events
-    cursor.execute("""
-        SELECT *
-        FROM events
-        ORDER BY event_date ASC
-        LIMIT 5
-    """)
-
-    upcoming_events = cursor.fetchall()
-
-    cursor.close()
-    conn.close()
-
-    return render_template(
-        "student_dashboard.html",
-        student=student,
-        total_events=total_events,
-        upcoming_events=upcoming_events
-    )
-
+    return redirect(url_for("home_page"))
 
 # ----------------------------------------------------
 # PROFILE
@@ -541,6 +493,8 @@ def admin_logout():
 # ADD EVENT
 # ----------------------------------------------------
 
+
+
 @app.route("/add_event", methods=["GET", "POST"])
 def add_event():
 
@@ -559,6 +513,35 @@ def add_event():
         description = request.form["description"]
         registration_link = request.form["registration_link"]
 
+        # ---------------- DATE VALIDATION ----------------
+
+        event_date_obj = datetime.strptime(event_date, "%Y-%m-%d").date()
+        last_date_obj = datetime.strptime(last_date, "%Y-%m-%d").date()
+        today = date.today()
+
+        # Event date cannot be before today
+        if event_date_obj < today:
+            flash("Event date cannot be in the past.", "danger")
+            return redirect(url_for("add_event"))
+
+        # Registration last date cannot be before today
+        if last_date_obj < today:
+            flash("Registration last date cannot be in the past.", "danger")
+            return redirect(url_for("add_event"))
+
+        # Registration last date must be before or on the event date
+        # Event date must be selected
+        if not event_date:
+            flash("Please select Event Date first.", "danger")
+            return redirect(url_for("add_event"))
+
+# Registration last date must be before or equal to Event Date
+        if last_date_obj > event_date_obj:
+            flash("Registration Last Date cannot be after the Event Date.", "danger")
+            return redirect(url_for("add_event"))
+
+        # ---------------- IMAGE UPLOAD ----------------
+
         image = request.files.get("image")
         filename = ""
 
@@ -573,23 +556,25 @@ def add_event():
                 )
             )
 
+        # ---------------- DATABASE INSERT ----------------
+
         conn = get_connection()
         cursor = conn.cursor()
 
         cursor.execute("""
-        INSERT INTO events
-        (
-            event_name,
-            category,
-            college_name,
-            event_date,
-            last_date,
-            venue,
-            description,
-            registration_link,
-            image
-        )
-        VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s)
+            INSERT INTO events
+            (
+                event_name,
+                category,
+                college_name,
+                event_date,
+                last_date,
+                venue,
+                description,
+                registration_link,
+                image
+            )
+            VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)
         """,
         (
             event_name,

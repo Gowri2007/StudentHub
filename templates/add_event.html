@@ -181,6 +181,8 @@
 
         <input
             type="date"
+                id="event_date"
+
             name="event_date"
             required>
 
@@ -195,7 +197,9 @@
 
         <input
             type="date"
+            id="last_date"
             name="last_date"
+              disabled
             required>
 
     </div>
@@ -291,6 +295,62 @@
 
 <script src="{{ url_for('static', filename='js/add_event.js') }}"></script>
 
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const today = new Date().toISOString().split("T")[0];
+
+    const eventDate = document.getElementById("event_date");
+    const lastDate = document.getElementById("last_date");
+
+    // Prevent past dates
+    eventDate.min = today;
+    lastDate.min = today;
+
+    // Registration date disabled initially
+    lastDate.disabled = true;
+
+    // When Event Date changes
+    eventDate.addEventListener("change", function () {
+
+        if (this.value === "") {
+
+            lastDate.disabled = true;
+            lastDate.value = "";
+
+        } else {
+
+            // Enable Registration Date
+            lastDate.disabled = false;
+
+            // Registration date cannot be after Event Date
+            lastDate.max = this.value;
+
+            // If already selected incorrectly
+            if (lastDate.value > this.value) {
+                alert("Registration Last Date cannot be after Event Date.");
+                lastDate.value = "";
+            }
+        }
+
+    });
+
+    // Validate Registration Date
+    lastDate.addEventListener("change", function () {
+
+        if (this.value > eventDate.value) {
+
+            alert("Registration Last Date cannot be after Event Date.");
+            this.value = "";
+
+        }
+
+    });
+
+});
+
+</script>
 </body>
 
 </html>

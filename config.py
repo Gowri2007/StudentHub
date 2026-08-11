@@ -1,14 +1,17 @@
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 class Config:
 
-    SECRET_KEY = "studenthub_secret_key"
+    SECRET_KEY = os.getenv("SECRET_KEY")
 
-    MYSQL_HOST = "localhost"
-    MYSQL_USER = "root"
-    MYSQL_PASSWORD = "Archana_2006"
-    MYSQL_DATABASE = "studenthub"
+    MYSQL_HOST = os.getenv("MYSQL_HOST")
+    MYSQL_USER = os.getenv("MYSQL_USER")
+    MYSQL_PASSWORD = os.getenv("MYSQL_PASSWORD")
+    MYSQL_DATABASE = os.getenv("MYSQL_DATABASE")
 
     UPLOAD_FOLDER = os.path.join("static", "uploads")
 

@@ -406,5 +406,34 @@ textarea{
     flex-wrap:wrap;
 
 }
+/* Fix Date Input */
+
+input[type="date"]{
+
+    width: 100%;
+
+    padding: 14px 16px;
+
+    padding-right: 45px;
+
+    color: #ffffff;
+
+    cursor: pointer;
+
+    appearance: auto;
+
+    -webkit-appearance: auto;
+
+}
+input[type="date"]::-webkit-calendar-picker-indicator{
+
+    opacity: 1;
+
+    cursor: pointer;
+
+    filter: invert(1);
+
+}
+
 
 

@@ -36,21 +36,15 @@
 
         
 
-        {% if session.get("student_id") %}
+      {% if session.get("student_id") %}
 
-        <li>
-            <a href="{{ url_for('student_dashboard') }}">
-                Dashboard
-            </a>
-        </li>
+<li>
+    <a href="{{ url_for('profile') }}" class="profile">
+        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png">
+    </a>
+</li>
 
-        <li>
-            <a href="{{ url_for('profile') }}" class="profile">
-                <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png">
-            </a>
-        </li>
-
-        {% else %}
+{% else %}
 
         <li>
             <a href="{{ url_for('student_login') }}">
@@ -98,7 +92,7 @@
     <div class="welcome">
 
         <h1>
-            Welcome Back 👋
+            Explore, Learn & Compete 🚀
         </h1>
 
         <p>

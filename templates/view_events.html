@@ -35,11 +35,7 @@
             </a>
         </li>
 
-        <li>
-            <a href="{{ url_for('add_event') }}">
-                Add Event
-            </a>
-        </li>
+        
 
         <li>
             <a href="{{ url_for('admin_logout') }}">
@@ -224,18 +220,7 @@ No Events Available
 
 <br><br>
 
-<div class="add-event-container">
 
-    <a href="{{ url_for('add_event') }}"
-       class="add-event-btn">
-
-        <i class="fa-solid fa-plus"></i>
-
-        Add New Event
-
-    </a>
-
-</div>
 <script>
 
 document.querySelectorAll(".flash").forEach(function(flash){
